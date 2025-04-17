@@ -11,4 +11,5 @@ e.g., Discovery with a /24 CIDR range with IP addresses 10.10.10.0/24.
 
 # Description
 
-# Arguments
+# Execution
+> curl -s https://raw.githubusercontent.com/0p3nt3ch53C/PiSec/refs/heads/main/update.sh 
