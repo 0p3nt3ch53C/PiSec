@@ -5,4 +5,7 @@ sudo apt-get autoremove -y && sudo apt-get autoclean -y
 sudo apt-get clean -y
 
 # Retrieve Payload All the Things
-git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git PATT && cd PATT
+git clone --depth 1 https://github.com/swisskyrepo/PayloadsAllTheThings.git PATT 
+
+# Retrieve SecLists
+git clone --depth 1 https://github.com/danielmiessler/SecLists.git SL
