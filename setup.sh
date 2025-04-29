@@ -29,7 +29,7 @@ git clone --depth 1 https://github.com/projecstdiscovery/katana.git Tools/KTA
 cd Tools/KTA
 DOCKER_BUILDKIT=1 docker build -t katana:latest .
 # Builds: docker.io/library/katana:latest
-# Example: docker run katana:latest -u http://scanme.nmap.org/ -system-chrome -headless > results/20250428-scanme.nmap.org.txt
+# Example: docker run katana:latest -u http://scanme.nmap.org/ -system-chrome -headless | tee results/20250428-scanme.nmap.org.txt
 # NOTE: first time run intalls chrome.
 # NOTE: Creates residual containers.
 
