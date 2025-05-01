@@ -130,3 +130,8 @@ cd ../..
 # Example: docker run --rm nuclei:latest -u https://www.rei.com | tee results/20250429-nuc-rei.txt &
 
 
+
+# WIP:
+# https://github.com/projectdiscovery/shuffledns (docker)
+# https://github.com/d3mondev/puredns (to dockerize)
+
