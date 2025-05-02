@@ -4,17 +4,19 @@ curl -sSL https://get.docker.com | sh
 dockerd-rootless-setuptool.sh install
 
 # Retrieve raw files for wordlists:
+mkdir WL && cd WL
+
 # Retrieve Payload All the Things
-git clone --depth 1 https://github.com/swisskyrepo/PayloadsAllTheThings.git PATT 
+git clone --depth 1 https://github.com/swisskyrepo/PayloadsAllTheThings.git WL/PATT 
 
 # Retrieve SecLists
-git clone --depth 1 https://github.com/danielmiessler/SecLists.git SL
+git clone --depth 1 https://github.com/danielmiessler/SecLists.git WL/SL
 
 # Add fuzz DB
-git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git FDB
+git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git WL/FDB
 
 # Get fuzz.txt wordlist
-git clone --depth 1 https://github.com/Bo0oM/fuzz.txt
+git clone --depth 1 https://github.com/Bo0oM/fuzz.txt WL/
 
 # Get Assetnote wordlists
 # mkdir ASW && cd ASW
