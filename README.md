@@ -33,6 +33,10 @@ e.g., Discovery with a /24 CIDR range with IP addresses 10.10.10.0/24.
 
 Example: rei.com
 
+> ./run.sh rei.com &
+
+Or as multiple lines:
+
 > docker run --rm katana:latest -jc -d 25 -u https://rei.com/ -system-chrome -headless | tee results/20250428-rei-d25.txt &
 > docker run --rm crt:latest rei.com | tee results/20250429-crt-rei.txt &
 > docker run --rm cero:latest www.rei.com -v  | tee results/20250429-cer-rei.txt &
