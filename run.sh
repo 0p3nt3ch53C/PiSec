@@ -28,6 +28,11 @@ echo "Found $(wc -l results/$1/$(date +%Y%m%d)-DOMAINS.all | awk '{print $1}') d
 
 echo "Attempting to spider domains found from $1..."
 
+docker run -v $(pwd)/results/$1/:/app/paramspider/ --rm paramspider:latest -l /app/paramspider/$(date +%Y%m%d)-DOMAINS.all -s | tee results/$1/$(date +%Y%m%d)-PSP.txt
+
+echo "Formatting paramspider results..."
+cat results/$1/$(date +%Y%m%d)-PSP.txt | grep -i "http" > /results/$1/$(date +%Y%m%d)-PSP-FUZZ.txt
+
 # Spider based on all domains
 echo "Runing Katana..."
 docker run --rm katana:latest -jc -d 25 -u $(cat results/$1/$(date +%Y%m%d)-OLDOMAINS.all) -system-chrome -headless | tee results/$1/$(date +%Y%m%d)-KTA.txt
