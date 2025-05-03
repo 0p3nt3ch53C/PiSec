@@ -1,6 +1,7 @@
 #!/bin/bash
 # Arguments: $1 = domain
 # Example: ./run.sh rei.com
+set -x
 
 echo "Attempting to retrieve domains for $1." 
 
@@ -30,3 +31,5 @@ echo "Attempting to spider domains found from $1..."
 # Spider based on all domains
 echo "Runing Katana..."
 docker run --rm katana:latest -jc -d 25 -u $(cat results/$1/$(date +%Y%m%d)-OLDOMAINS.all) -system-chrome -headless | tee results/$1/$(date +%Y%m%d)-KTA.txt
+
+set +x
