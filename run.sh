@@ -37,4 +37,7 @@ cat results/$1/$(date +%Y%m%d)-PSP.txt | grep -i "http" > /results/$1/$(date +%Y
 echo "Runing Katana..."
 docker run --rm katana:latest -jc -d 25 -u $(cat results/$1/$(date +%Y%m%d)-OLDOMAINS.all) -system-chrome -headless | tee results/$1/$(date +%Y%m%d)-KTA.txt
 
+echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-PSP-FUZZ.txt | awk '{print $1}') FUZZable URLs."
+echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-KTA.txt | awk '{print $1}') URLs."
+
 set +x
