@@ -134,3 +134,4 @@ cd ../..
 # WIP:
 # https://github.com/projectdiscovery/shuffledns (docker)
 # https://github.com/d3mondev/puredns (to dockerize)
+# https://github.com/hussein98d/LFI-files/blob/master/list.txt (add wordlist)
