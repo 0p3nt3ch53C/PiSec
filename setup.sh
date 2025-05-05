@@ -131,7 +131,14 @@ DOCKER_BUILDKIT=1 docker build -t nuclei:latest .
 cd ../..
 # Example: docker run --rm nuclei:latest -u https://www.rei.com | tee results/20250429-nuc-rei.txt &
 
+
+
 # WIP:
 # https://github.com/projectdiscovery/shuffledns (docker)
 # https://github.com/d3mondev/puredns (to dockerize)
 # https://github.com/hussein98d/LFI-files/blob/master/list.txt (add wordlist)
+# https://github.com/OJ/gobuster (docker)
+# https://github.com/C-Sto/recursebuster (to dockerize)
+# https://github.com/xnl-h4ck3r/waymore (docker)
+# https://github.com/s0md3v/Arjun (to dockerize)
+# https://github.com/Sh1Yo/x8 (docker)

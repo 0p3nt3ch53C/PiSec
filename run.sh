@@ -4,8 +4,18 @@
 set -x
 echo "Attempting to retrieve domains for $1." 
 
+if [ -z "$1" ]; then
+    echo "Usage: $0 <domain>"
+    exit 1
+fi
+if [ ! -d "results" ]; then
+    mkdir results
+fi
+if [ -d "results/$1/" ]; then
+    mv results/$1/ results/$1-$(date +%Y%m%d-%H%M%S)/
+fi
 mkdir -p results/$1/
-
+exit
 # Retrieve domains
 echo "Running subfinder..."
 docker run --rm subfinder:latest -d $1 -all | tee results/$1/$(date +%Y%m%d)-SBF.txt
@@ -52,7 +62,7 @@ echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-KTA.txt |
 # REF: https://github.com/s0md3v/Arjun
 
 # Run x8
-# REF: https://github.com/Sh1Yo/x8s
+# REF: https://github.com/Sh1Yo/x8
 
 
 # To look into converting:
