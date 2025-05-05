@@ -2,7 +2,6 @@
 # Arguments: $1 = domain
 # Example: ./run.sh rei.com
 set -x
-
 echo "Attempting to retrieve domains for $1." 
 
 mkdir -p results/$1/
@@ -26,12 +25,12 @@ sed -i -e 's/^/https:\/\//' results/$1/$(date +%Y%m%d)-DOMAINS.all
 tr '\n' ',' < results/$1/$(date +%Y%m%d)-DOMAINS.all > results/$1/$(date +%Y%m%d)-OLDOMAINS.all
 echo "Found $(wc -l results/$1/$(date +%Y%m%d)-DOMAINS.all | awk '{print $1}') domains."
 
-echo "Attempting to spider domains found from $1..."
-
 docker run -v $(pwd)/results/$1/:/app/paramspider/ --rm paramspider:latest -l /app/paramspider/$(date +%Y%m%d)-DOMAINS.all -s | tee results/$1/$(date +%Y%m%d)-PSP.txt
 
 echo "Formatting paramspider results..."
-cat results/$1/$(date +%Y%m%d)-PSP.txt | grep -i "http" > /results/$1/$(date +%Y%m%d)-PSP-FUZZ.txt
+cat results/$1/$(date +%Y%m%d)-PSP.txt | grep -i "http" > results/$1/$(date +%Y%m%d)-PSP-FUZZ.txt
+
+echo "Attempting to spider domains found from $1..."
 
 # Spider based on all domains
 echo "Runing Katana..."
