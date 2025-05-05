@@ -132,6 +132,14 @@ cd ../..
 # Example: docker run --rm nuclei:latest -u https://www.rei.com | tee results/20250429-nuc-rei.txt &
 
 
+# Retrieve waymore (docker)
+git clone --depth 1 https://github.com/xnl-h4ck3r/waymore.git Tools/WAY
+cd Tools/WAY
+DOCKER_BUILDKIT=1 docker build -t waymore:latest .
+cd ../..
+# Example: docker run --rm amass:latest enum -active -d rei.com -v | tee results/20250429-ama-rei.txt &
+
+
 
 # WIP:
 # https://github.com/projectdiscovery/shuffledns (docker)
