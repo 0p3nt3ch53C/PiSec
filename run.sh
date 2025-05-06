@@ -2,6 +2,37 @@
 # Arguments: $1 = domain
 # Example: ./run.sh rei.com
 set -x
+
+if [ "$#" -ne 1 ]; then
+  echo "Error: Please provide exactly one argument (either a domain or a Hacker One CSV file path formatted file)."
+  exit 1
+fi
+
+argument="$1"
+
+case "$argument" in
+  "")
+    echo "Error: Please provide exactly one argument (either a domain or a Hacker One CSV file path formatted file)."
+    exit 1
+    ;;
+  -*)
+    echo "Error: Argument cannot start with a dash."
+    exit 1
+    ;;
+  *)
+    # Check if the argument is a file
+    if [ -f "$argument" ]; then
+      echo "Argument is a file: $argument"
+      # Add file processing logic here
+      cat "$argument"
+    else
+      echo "Argument is a string: $argument"
+      # Add string processing logic here
+      echo "String length: ${#argument}"
+    fi
+    ;;
+esac
+
 echo "Attempting to retrieve domains for $1." 
 
 if [ -z "$1" ]; then
@@ -15,7 +46,7 @@ if [ -d "results/$1/" ]; then
     mv results/$1/ results/$1-$(date +%Y%m%d-%H%M%S)/
 fi
 mkdir -p results/$1/
-exit
+
 # Retrieve domains
 echo "Running subfinder..."
 docker run --rm subfinder:latest -d $1 -all | tee results/$1/$(date +%Y%m%d)-SBF.txt

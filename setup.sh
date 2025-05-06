@@ -137,7 +137,7 @@ git clone --depth 1 https://github.com/xnl-h4ck3r/waymore.git Tools/WAY
 cd Tools/WAY
 DOCKER_BUILDKIT=1 docker build -t waymore:latest .
 cd ../..
-# Example: docker run --rm waymore:latest -i rei.com -mode B -v | tee results/20250429-ama-rei.txt &
+# Example: docker run --rm waymore:latest waymore -i rei.com -mode B -v | tee results/20250429-ama-rei.txt &
 
 # WIP:
 # https://github.com/projectdiscovery/shuffledns (docker)
