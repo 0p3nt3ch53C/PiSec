@@ -1,6 +1,7 @@
 #!/bin/bash
-# Arguments: $1 = domain
-# Example: ./run.sh rei.com
+# Arguments: $1 = domain / hackeronecsv
+# Example: ./run.sh <domain>
+# Example: ./run.sh <hackerone csv file>
 set -x
 
 if [ "$#" -ne 1 ]; then
