@@ -23,6 +23,7 @@ case "$argument" in
     # Check if the argument is a file
     if [ -f "$argument" ]; then
       echo "Argument is a file: $argument"
+      # Update to give additional guidance for if file is used for domains.
       # Add file processing logic here
       cat "$argument"
     else
@@ -46,6 +47,8 @@ if [ -d "results/$1/" ]; then
     mv results/$1/ results/$1-$(date +%Y%m%d-%H%M%S)/
 fi
 mkdir -p results/$1/
+
+# Create logic for if file used for domains.
 
 # Retrieve domains
 echo "Running subfinder..."
