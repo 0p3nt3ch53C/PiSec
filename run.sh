@@ -97,10 +97,10 @@ echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-KTA.txt |
 # WIP -Run x8
 # REF: https://github.com/Sh1Yo/x8
 
+set +x
+
 
 # To look into converting:
 
 # WIP -Run Param Miner
 # REF: https://github.com/PortSwigger/param-miner
-
-set +x
