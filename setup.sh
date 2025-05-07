@@ -139,7 +139,7 @@ DOCKER_BUILDKIT=1 docker build -t waymore:latest .
 cd ../..
 # Example: docker run --rm waymore:latest waymore -i rei.com -mode B -v | tee results/20250429-ama-rei.txt &
 
-# WIP:
+# WIP - 
 # https://github.com/projectdiscovery/shuffledns (docker)
 # https://github.com/d3mondev/puredns (to dockerize)
 # https://github.com/hussein98d/LFI-files/blob/master/list.txt (add wordlist)
