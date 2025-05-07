@@ -24,12 +24,9 @@ case "$argument" in
     # Check if the argument is a file
     if [ -f "$argument" ]; then
       echo "Argument is a file: $argument"
-      # Update to give additional guidance for if file is used for domains.
-      # Add file processing logic here
       cat "$argument"
     else
       echo "Argument is a string: $argument"
-      # Add string processing logic here
       echo "String length: ${#argument}"
     fi
     ;;
@@ -50,6 +47,7 @@ fi
 mkdir -p results/$1/
 
 # Create logic for if file used for domains.
+# WIP - If file, strip out and check if hackerone csv file, or raw domains, or something else.
 
 # Retrieve domains
 echo "Running subfinder..."
@@ -84,25 +82,25 @@ docker run --rm katana:latest -jc -d 25 -u $(cat results/$1/$(date +%Y%m%d)-OLDO
 echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-PSP-FUZZ.txt | awk '{print $1}') FUZZable URLs."
 echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-KTA.txt | awk '{print $1}') URLs."
 
-# Run Gobuster:
+# WIP -Run Gobuster:
 # REF: https://github.com/OJ/gobuster
 
-# Run Recurse Buster:
+# WIP -Run Recurse Buster:
 # REF: https://github.com/C-Sto/recursebuster
 
-# Run Waymore
+# WIP -Run Waymore
 # REF: https://github.com/xnl-h4ck3r/waymore
 
-# Run Arjun
+# WIP -Run Arjun
 # REF: https://github.com/s0md3v/Arjun
 
-# Run x8
+# WIP -Run x8
 # REF: https://github.com/Sh1Yo/x8
 
 
 # To look into converting:
 
-# Run Param Miner
+# WIP -Run Param Miner
 # REF: https://github.com/PortSwigger/param-miner
 
 set +x
