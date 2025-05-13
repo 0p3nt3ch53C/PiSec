@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoclean && sudo apt-get autoremove -y
+
 curl -sSL https://get.docker.com | sh
 dockerd-rootless-setuptool.sh install
 
@@ -166,12 +168,17 @@ cd ../..
 # Retrieve httpx (docker)
 git clone --depth 1 https://github.com/projectdiscovery/httpx.git Tools/HTX
 cd Tools/HTX
-DOCKER_BUILDKIT=1 docker build -t pttpx:latest .
+sed -i 's/apk\ add\ --no-cache\ git\ build-base\ gcc\ musl-dev//g' Dockerfile
+DOCKER_BUILDKIT=1 docker build -t httpx:latest .
 cd ../..
 # Example: docker run --rm httpx:latest rei.com 
 
-# Retr
+
 # WIP - 
 # https://github.com/d3mondev/puredns (to dockerize)
 # https://github.com/C-Sto/recursebuster (to dockerize)
 # https://github.com/s0md3v/Arjun (to dockerize)
+# https://github.com/projectdiscovery/wappalyzergo (to dockerize)
+# https://github.com/projectdiscovery/notify (docker)
+# https://github.com/projectdiscovery/urlfinder (docker)
+# Domain Listing: https://raw.githubusercontent.com/projectdiscovery/public-bugbounty-programs/refs/heads/main/chaos-bugbounty-list.json
