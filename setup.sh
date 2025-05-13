@@ -18,6 +18,9 @@ git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git WL/FDB
 # Get fuzz.txt wordlist
 git clone --depth 1 https://github.com/Bo0oM/fuzz.txt WL/
 
+# Get LFI Wordlist
+git clone --depth 1 https://github.com/hussein98d/LFI-files.git WL/LFILIST
+
 # Get Assetnote wordlists
 # mkdir ASW && cd ASW
 # wget -r --no-parent -R "index.html*" https://wordlists-cdn.assetnote.io/data/ -nH -e robots=off
@@ -148,7 +151,6 @@ cd ../..
 
 
 # WIP - 
-# https://github.com/projectdiscovery/shuffledns (docker)
 # https://github.com/d3mondev/puredns (to dockerize)
 # https://github.com/hussein98d/LFI-files/blob/master/list.txt (add wordlist)
 # https://github.com/OJ/gobuster (docker)
