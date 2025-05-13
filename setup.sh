@@ -154,14 +154,24 @@ git clone --depth 1 https://github.com/OJ/gobuster.git Tools/GBU
 cd Tools/GBU
 DOCKER_BUILDKIT=1 docker build -t gobuster:latest .
 cd ../..
-# Example: docker run --rm gobuster:latest gobuster dir -u rei.com
+# Example: docker run --rm gobuster:latest dir -u rei.com
 
+# Retrieve x8 (docker)
+git clone --depth 1 https://github.com/Sh1Yo/x8.git Tools/X8
+cd Tools/X8
+DOCKER_BUILDKIT=1 docker build -t x8:latest .
+cd ../..
+# Example: docker run --rm x8:latest -u "https://rei.com"
 
+# Retrieve httpx (docker)
+git clone --depth 1 https://github.com/projectdiscovery/httpx.git Tools/HTX
+cd Tools/HTX
+DOCKER_BUILDKIT=1 docker build -t pttpx:latest .
+cd ../..
+# Example: docker run --rm httpx:latest rei.com 
 
+# Retr
 # WIP - 
 # https://github.com/d3mondev/puredns (to dockerize)
-# https://github.com/OJ/gobuster (docker)
 # https://github.com/C-Sto/recursebuster (to dockerize)
-# https://github.com/xnl-h4ck3r/waymore (docker)
 # https://github.com/s0md3v/Arjun (to dockerize)
-# https://github.com/Sh1Yo/x8 (docker)
