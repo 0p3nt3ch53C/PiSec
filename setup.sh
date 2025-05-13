@@ -149,10 +149,17 @@ DOCKER_BUILDKIT=1 docker build -t shuffledns:latest .
 cd ../..
 # Example: docker run --rm shuffledns:latest shuffledns -d rei.com
 
+# Retrieve gobuster (docker)
+git clone --depth 1 https://github.com/OJ/gobuster.git Tools/GBU
+cd Tools/GBU
+DOCKER_BUILDKIT=1 docker build -t gobuster:latest .
+cd ../..
+# Example: docker run --rm gobuster:latest gobuster dir -u rei.com
+
+
 
 # WIP - 
 # https://github.com/d3mondev/puredns (to dockerize)
-# https://github.com/hussein98d/LFI-files/blob/master/list.txt (add wordlist)
 # https://github.com/OJ/gobuster (docker)
 # https://github.com/C-Sto/recursebuster (to dockerize)
 # https://github.com/xnl-h4ck3r/waymore (docker)
