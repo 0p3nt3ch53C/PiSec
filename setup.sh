@@ -174,7 +174,7 @@ cd ../..
 # Example: docker run --rm httpx:latest rei.com 
 
 
-# WIP - 
+# Work in progress (WIP):
 # https://github.com/d3mondev/puredns (to dockerize)
 # https://github.com/C-Sto/recursebuster (to dockerize)
 # https://github.com/s0md3v/Arjun (to dockerize)
