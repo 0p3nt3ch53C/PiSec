@@ -182,3 +182,6 @@ cd ../..
 # https://github.com/projectdiscovery/notify (docker)
 # https://github.com/projectdiscovery/urlfinder (docker)
 # Domain Listing: https://raw.githubusercontent.com/projectdiscovery/public-bugbounty-programs/refs/heads/main/chaos-bugbounty-list.json
+
+# To look into converting:
+# REF: https://github.com/PortSwigger/param-miner
