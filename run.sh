@@ -82,19 +82,5 @@ docker run --rm katana:latest -jc -d 25 -u $(cat results/$1/$(date +%Y%m%d)-OLDO
 echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-PSP-FUZZ.txt | awk '{print $1}') FUZZable URLs."
 echo "Final results from $1 include $(wc -l results/$1/$(date +%Y%m%d)-KTA.txt | awk '{print $1}') URLs."
 
-# WIP -Run Gobuster:
-# REF: https://github.com/OJ/gobuster
-
-# WIP -Run Recurse Buster:
-# REF: https://github.com/C-Sto/recursebuster
-
-# WIP -Run Waymore
-# REF: https://github.com/xnl-h4ck3r/waymore
-
-# WIP -Run Arjun
-# REF: https://github.com/s0md3v/Arjun
-
 
 set +x
-
-
