@@ -43,3 +43,7 @@ Or as multiple lines:
 > docker run --rm subfinder:latest -d rei.com -all  | tee results/20250429-sbf-rei.txt &
 > docker run --rm amass:latest enum -active -d rei.com -v | tee results/20250429-ama-rei.txt &
 > docker run --rm nuclei:latest -u https://www.rei.com | tee results/20250429-nuc-rei.txt &
+
+# Manual Testing:
+See: 
+1. https://book.hacktricks.wiki/en/index.html
