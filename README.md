@@ -45,5 +45,6 @@ Or as multiple lines:
 > docker run --rm nuclei:latest -u https://www.rei.com | tee results/20250429-nuc-rei.txt &
 
 # Manual Testing:
-See: 
+
+For manual testing, please see: 
 1. https://book.hacktricks.wiki/en/index.html
