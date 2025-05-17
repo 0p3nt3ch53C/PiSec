@@ -113,7 +113,7 @@ cd ../..
 # Retrieve subfinder (docker)
 git clone --depth 1 https://github.com/projectdiscovery/subfinder.git Tools/SBF
 cd Tools/SBF
-ls -a | grep -iv "Dockerfile" | grep -iv "v2" | xargs rm -rf
+ls -a | grep -iv -e "Dockerfile" -e "v2" | xargs rm -rf
 DOCKER_BUILDKIT=1 docker build -t subfinder:latest .
 cd ../..
 # Example: docker run --rm subfinder:latest -d rei.com -all  | tee results/20250429-sbf-rei.txt &
@@ -148,6 +148,7 @@ cd ../..
 # Retrieve shuffledns (docker)
 git clone --depth 1 https://github.com/projectdiscovery/shuffledns.git Tools/SDNS
 cd Tools/SDNS
+ls -a | grep -iv "Dockerfile" | xargs rm -rf
 DOCKER_BUILDKIT=1 docker build -t shuffledns:latest .
 cd ../..
 # Example: docker run --rm shuffledns:latest shuffledns -d rei.com
@@ -162,6 +163,7 @@ cd ../..
 # Retrieve x8 (docker)
 git clone --depth 1 https://github.com/Sh1Yo/x8.git Tools/X8
 cd Tools/X8
+ls -a | grep -iv -e "Dockerfile" -e "Cargo" -e "src" | xargs rm -rf
 DOCKER_BUILDKIT=1 docker build -t x8:latest .
 cd ../..
 # Example: docker run --rm x8:latest -u "https://rei.com"
@@ -173,6 +175,9 @@ sed -i 's/apk\ add\ --no-cache\ git\ build-base\ gcc\ musl-dev//g' Dockerfile
 DOCKER_BUILDKIT=1 docker build -t httpx:latest .
 cd ../..
 # Example: docker run --rm httpx:latest rei.com 
+
+# remove all dangling data:
+docker system prune --volumes -f
 
 
 # Work in progress (WIP):
