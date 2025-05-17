@@ -113,6 +113,7 @@ cd ../..
 # Retrieve subfinder (docker)
 git clone --depth 1 https://github.com/projectdiscovery/subfinder.git Tools/SBF
 cd Tools/SBF
+ls -a | grep -iv "Dockerfile" | grep -iv "v2" | xargs rm -rf
 DOCKER_BUILDKIT=1 docker build -t subfinder:latest .
 cd ../..
 # Example: docker run --rm subfinder:latest -d rei.com -all  | tee results/20250429-sbf-rei.txt &
