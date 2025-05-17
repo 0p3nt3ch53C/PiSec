@@ -4,6 +4,7 @@
 
 For manual testing, please see: 
 1. https://book.hacktricks.wiki/en/index.html
+2. ...
 
 ## Wordlists available
 
