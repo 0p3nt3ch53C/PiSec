@@ -6,6 +6,10 @@ For manual testing, please see:
 1. https://book.hacktricks.wiki/en/index.html
 2. ...
 
+### Tools:
+
+1. Caido / BurpSuite
+
 ## Wordlists available
 
 1. [Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings)
