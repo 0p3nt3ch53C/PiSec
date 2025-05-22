@@ -7,7 +7,8 @@ For manual testing, please see:
 
 ### Tools:
 
-1. Caido / BurpSuite / Polar Proxy
+1. Proxy (e.g., Caido / BurpSuite / Polar Proxy)
+2. XSS Hunter
 
 ## Wordlists available
 
