@@ -7,7 +7,7 @@ For manual testing, please see:
 
 ### Tools:
 
-1. Caido / BurpSuite
+1. Caido / BurpSuite / Polar Proxy
 
 ## Wordlists available
 
