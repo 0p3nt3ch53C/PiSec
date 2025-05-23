@@ -47,7 +47,7 @@ fi
 mkdir -p results/$1/
 
 # Create logic for if file used for domains.
-# WIP - If file, strip out and check if hackerone csv file, or raw domains, or something else.
+# WIP - If a file, strip out and check if hackerone csv file, or raw domains, or something else.
 
 # Retrieve domains
 echo "Running subfinder..."
