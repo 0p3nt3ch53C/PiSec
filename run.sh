@@ -62,6 +62,8 @@ docker run --rm cero:latest $1 | tee results/$1/$(date +%Y%m%d)-CER.txt
 # WIP - Requires filtering:
 # echo "Running amass..."
 # docker run --rm amass:latest enum -active -d $1 -v | tee results/$1/$(date +%Y%m%d)-AMA.txt
+# Capture OSINT:
+# Capture ENUM:
 
 sort -u results/$1/$(date +%Y%m%d)-*.txt > results/$1/$(date +%Y%m%d)-DOMAINS.all
 sed -i -e 's/^/https:\/\//' results/$1/$(date +%Y%m%d)-DOMAINS.all
