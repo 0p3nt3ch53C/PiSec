@@ -1,5 +1,9 @@
 # PiSec
 
+# Improvements:
+
+1. Searching for credentials (e.g., trufflehog)
+
 ## Manual Testing:
 
 For manual testing, please see: 
