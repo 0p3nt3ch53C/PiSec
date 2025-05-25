@@ -32,7 +32,7 @@ cd ..
 # Retrieve tools
 
 # Retrieve XSS Hunter (docker)
-git clone --depth 1 https://github.com/mandatoryprogrammer/xsshunter-express.git Tools/XSH 
+git clone --depth 1 https://github.com/mandatoryprogrammer/xsshunter-express.git Tools/XSSH
 cd Tools/XSSH
 DOCKER_BUILDKIT=1 docker build -t xsshunter:latest .
 cd ../..
@@ -93,8 +93,8 @@ cd ../..
 
 
 # Retrieve Cero (docker)
-# NO NEED FOR HAVING FILES: git clone --depth 1 https://github.com/glebarez/cero.git Tools/CER
-cd Tools/CER
+git clone --depth 1 https://github.com/glebarez/cero.git Tools/CER
+mkdir Tools/CER && cd Tools/CER
 mv cero.go main.go
 echo '''
 FROM golang:1.23-alpine AS build-env
