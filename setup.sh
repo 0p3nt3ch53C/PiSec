@@ -24,11 +24,13 @@ git clone --depth 1 https://github.com/Bo0oM/fuzz.txt WL/
 # Get LFI Wordlist
 git clone --depth 1 https://github.com/hussein98d/LFI-files.git WL/LFILIST
 
-# Get Assetnote wordlists
-# mkdir ASW && cd ASW
-# wget -r --no-parent -R "index.html*" https://wordlists-cdn.assetnote.io/data/ -nH -e robots=off
+# Get Assetnote wordlists (ALL - LARGE)
+mkdir ASW && cd ASW
+wget -r --no-parent -R "index.html*" https://wordlists-cdn.assetnote.io/data/ -nH -e robots=off
+cd ..
 
 # Retrieve tools
+
 # Retrieve XSS Hunter (docker)
 git clone --depth 1 https://github.com/mandatoryprogrammer/xsshunter-express.git Tools/XSH 
 cd Tools/XSSH
