@@ -3,6 +3,7 @@
 sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoclean && sudo apt-get autoremove -y
 
 curl -sSL https://get.docker.com | sh
+sudo apt-get install -y uidmap
 dockerd-rootless-setuptool.sh install
 
 # Retrieve raw files for wordlists:
