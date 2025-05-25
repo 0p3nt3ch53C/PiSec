@@ -173,6 +173,7 @@ cd ../..
 # Retrieve httpx (docker)
 git clone --depth 1 https://github.com/projectdiscovery/httpx.git Tools/HTX
 cd Tools/HTX
+sed -i 's/1.21.4/1.23.0/g' Dockerfile
 sed -i 's/apk\ add\ --no-cache\ git\ build-base\ gcc\ musl-dev//g' Dockerfile
 DOCKER_BUILDKIT=1 docker build -t httpx:latest .
 cd ../..
