@@ -94,7 +94,7 @@ cd ../..
 
 # Retrieve Cero (docker)
 git clone --depth 1 https://github.com/glebarez/cero.git Tools/CER
-mkdir Tools/CER && cd Tools/CER
+cd Tools/CER
 mv cero.go main.go
 echo '''
 FROM golang:1.23-alpine AS build-env
