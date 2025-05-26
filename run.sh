@@ -1,4 +1,7 @@
 #!/bin/bash
+# Arguments: $1 = domain / hackeronecsv
+# Example: ./run.sh <domain>
+# Example: ./run.sh <hackerone csv file>
 set -x
 
 if [[ "$#" -gt 2 ]]; then
@@ -40,19 +43,18 @@ if [ ! -d "results" ]; then
     mkdir results
 fi
 if [ -d "results/$target/" ]; then
-    mv results/"$target"/ results/"$target"-$(date +%Y%m%d-%H%M%S)/
+    mv results/"$target"/ results/"$target"-$(date +%Y%m%d-%H%M%S)-archived/
 fi
-mkdir -p results/"$target"/
+results_directory="results/$target/"
+mkdir -p $results_directory
 
 echo "Continuing with: $target".
-
-exit
 # Create logic for if file used for domains.
 # WIP - If a file, strip out and check if hackerone csv file, or raw domains, or something else.
 
 # Retrieve domains
 echo "Running subfinder..."
-docker run --rm subfinder:latest -d $1 -all | tee results/$1/$(date +%Y%m%d)-SBF.txt
+docker run --rm subfinder:latest -d $target -all | tee results/$1/$(date +%Y%m%d)-SBF.txt
 
 echo "Running crt..."
 docker run --rm crt:latest $1 | tee results/$1/$(date +%Y%m%d)-CRT.txt
