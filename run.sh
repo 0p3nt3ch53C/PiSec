@@ -1,38 +1,36 @@
 #!/bin/bash
-# Arguments: $1 = domain / hackeronecsv
-# Example: ./run.sh <domain>
-# Example: ./run.sh <hackerone csv file>
 set -x
 
-if [ "$#" -ne 1 ]; then
+if [[ "$#" -gt 2 ]]; then
   echo "Error: Please provide exactly one argument (either a domain or a Hacker One CSV file path formatted file)."
   exit 1
 fi
 
-argument="$1"
+domain_only=false
+domain_list=false
+hackerone_csv=false
 
-case "$argument" in
-  "")
-    echo "Error: Please provide exactly one argument (either a domain or a Hacker One CSV file path formatted file)."
-    exit 1
-    ;;
-  -*)
-    echo "Error: Argument cannot start with a dash."
-    exit 1
-    ;;
-  *)
-    # Check if the argument is a file
-    if [ -f "$argument" ]; then
-      echo "Argument is a file: $argument"
-      cat "$argument"
-    else
-      echo "Argument is a string: $argument"
-      echo "String length: ${#argument}"
-    fi
-    ;;
-esac
+while getopts "d:dl:h1csv:" opt; do
+  case "$opt" in
+    d)
+     target="${OPTARG}"
+     domain_only=true;;
+    dl)
+      target="${OPTARG}"
+      domain_list=true;;
+    h1csv)
+      target="${OPTARG}"
+      hackerone_csv=true;;
+    *)
+      echo "Usage: $0 [-d domain] [-dl domain list] [-h1csv hackerone_csv_file]"
+      echo "Example - Domain: $0 -d target-domain.com"
+      echo "Example - Domain List: $0 -dl 'target-domain1.com,target-domain2.com'"
+      echo "Example - Hacker One CSV: $0 -h1csv '/path/to/h1.csv'"
+      exit 1;;
+  esac
+done
 
-echo "Attempting to retrieve domains for $1." 
+echo "Attempting to retrieve domains for $target."
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <domain>"
@@ -41,12 +39,12 @@ fi
 if [ ! -d "results" ]; then
     mkdir results
 fi
-if [ -d "results/$1/" ]; then
-    mv results/$1/ results/$1-$(date +%Y%m%d-%H%M%S)/
+if [ -d "results/$target/" ]; then
+    mv results/"$target"/ results/"$target"-$(date +%Y%m%d-%H%M%S)/
 fi
-mkdir -p results/$1/
+mkdir -p results/"$target"/
 
-echo "Continuing with: $1".
+echo "Continuing with: $target".
 
 exit
 # Create logic for if file used for domains.
