@@ -46,6 +46,9 @@ if [ -d "results/$1/" ]; then
 fi
 mkdir -p results/$1/
 
+echo "Continuing with: $1".
+
+exit
 # Create logic for if file used for domains.
 # WIP - If a file, strip out and check if hackerone csv file, or raw domains, or something else.
 

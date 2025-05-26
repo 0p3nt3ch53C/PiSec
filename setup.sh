@@ -165,7 +165,7 @@ cd ../..
 # Retrieve x8 (docker)
 git clone --depth 1 https://github.com/Sh1Yo/x8.git Tools/X8
 cd Tools/X8
-ls -a | grep -iv -e "Dockerfile" -e "Cargo" -e "src" | xargs rm -rf
+# ls -a | grep -iv -e "Dockerfile" -e "Cargo" -e "src" | xargs rm -rf
 DOCKER_BUILDKIT=1 docker build -t x8:latest .
 cd ../..
 # Example: docker run --rm x8:latest -u "https://rei.com"
