@@ -19,7 +19,7 @@ git clone --depth 1 https://github.com/danielmiessler/SecLists.git WL/SL
 git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git WL/FDB
 
 # Get fuzz.txt wordlist
-git clone --depth 1 https://github.com/Bo0oM/fuzz.txt WL/
+git clone --depth 1 https://github.com/Bo0oM/fuzz.txt WL/FUZZTXT
 
 # Get LFI Wordlist
 git clone --depth 1 https://github.com/hussein98d/LFI-files.git WL/LFILIST
@@ -156,11 +156,30 @@ cd ../..
 # Example: docker run --rm shuffledns:latest shuffledns -d rei.com
 
 # Retrieve gobuster (docker)
-git clone --depth 1 https://github.com/OJ/gobuster.git Tools/GBU
-cd Tools/GBU
-DOCKER_BUILDKIT=1 docker build -t gobuster:latest .
-cd ../..
+# git clone --depth 1 https://github.com/OJ/gobuster.git Tools/GBU
+# cd Tools/GBU
+# DOCKER_BUILDKIT=1 docker build -t gobuster:latest .
+# cd ../..
 # Example: docker run --rm gobuster:latest dir -u rei.com
+
+# Retrieve FFUF (docker)
+git clone --depth 1 https://github.com/ffuf/ffuf.git Tools/FUF
+cd Tools/FUF
+echo '''
+FROM golang:1.23-alpine AS build-env
+COPY . /app
+WORKDIR /app/
+RUN go mod download
+RUN go build -o /app .
+
+FROM alpine:3.21.3
+COPY --from=build-env /app /usr/local/bin/
+ENTRYPOINT ["ffuf"]
+''' > Dockerfile
+DOCKER_BUILDKIT=1 docker build -t ffuf:latest .
+cd ../..
+# Example: docker run -v $(pwd)/WL/SL/Discovery/DNS/:/app/ --rm ffuf:latest -w /app/subdomains-top1million-5000.txt -u https://FUZZ.rei.com | tee "$results_directory$(date +%Y%m%d)-HTTPX.csv"
+
 
 # Retrieve x8 (docker)
 git clone --depth 1 https://github.com/Sh1Yo/x8.git Tools/X8
@@ -177,7 +196,7 @@ sed -i 's/1.21.4/1.23.0/g' Dockerfile
 sed -i 's/apk\ add\ --no-cache\ git\ build-base\ gcc\ musl-dev//g' Dockerfile
 DOCKER_BUILDKIT=1 docker build -t httpx:latest .
 cd ../..
-# Example: docker run --rm httpx:latest rei.com 
+# Example: docker run -v $(pwd)"/$results_directory":/app/ --rm httpx:latest -l /app/$(date +%Y%m%d)-DOMAINS.all -sc -cl -ct -title -server -td -cdn -location -csv | tee "$results_directory$(date +%Y%m%d)-HTTPX.csv"
 
 # remove all dangling data:
 docker system prune --volumes -f
