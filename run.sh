@@ -69,12 +69,12 @@ docker run --rm cero:latest "$target" | tee "$results_directory$(date +%Y%m%d)-C
 # Capture ENUM:
 # docker run --rm amass:latest enum -active -d "$target" -v | tee "$results_directory$(date +%Y%m%d)-ENUM-AMA.txt"
 
-sort -u "$results_directory$(date +%Y%m%d)-*.txt" > "$results_directory$(date +%Y%m%d)-DOMAINS.all"
+sort -u "$results_directory"$(date +%Y%m%d)-*.txt > "$results_directory$(date +%Y%m%d)-DOMAINS.all"
 sed -i -e 's/^/https:\/\//' "$results_directory$(date +%Y%m%d)-DOMAINS.all"
 tr '\n' ',' < "$results_directory$(date +%Y%m%d)-DOMAINS.all" > "$results_directory$(date +%Y%m%d)-OLDOMAINS.all"
 echo "Found $(wc -l results/$target/$(date +%Y%m%d)-DOMAINS.all | awk '{print $1}') domains."
 
-docker run -v $(pwd)"$results_directory":/app/paramspider/ --rm paramspider:latest -l /app/paramspider/$(date +%Y%m%d)-DOMAINS.all -s | tee "$results_directory$(date +%Y%m%d)-PSP.txt"
+docker run -v $(pwd)"/$results_directory":/app/paramspider/ --rm paramspider:latest -l /app/paramspider/$(date +%Y%m%d)-DOMAINS.all -s | tee "$results_directory$(date +%Y%m%d)-PSP.txt"
 
 echo "Formatting paramspider results..."
 cat "$results_directory$(date +%Y%m%d)-PSP.txt" | grep -i "http" > "$results_directory$(date +%Y%m%d)-PSP-FUZZ.txt"
