@@ -81,6 +81,10 @@ cat "$results_directory$(date +%Y%m%d)-PSP.txt" | grep -i "http" > "$results_dir
 
 echo "Attempting to spider domains found from $target..."
 
+# Check status with HTTPX based on all domains:
+echo "Running HTTPX..."
+docker run -v $(pwd)"/$results_directory":/app/ --rm httpx:latest -l /app/$(date +%Y%m%d)-DOMAINS.all -sc -cl -ct -title -server -td -cdn -location -csv | tee "$results_directory$(date +%Y%m%d)-HTTPX.csv"
+
 # Spider based on all domains
 echo "Runing Katana..."
 docker run --rm katana:latest -jc -d 25 -u $(cat "$results_directory$(date +%Y%m%d)-OLDOMAINS.all") -system-chrome -headless | tee "$results_directory$(date +%Y%m%d)-KTA.txt"
@@ -88,5 +92,6 @@ docker run --rm katana:latest -jc -d 25 -u $(cat "$results_directory$(date +%Y%m
 # Print final results:
 echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-PSP-FUZZ.txt" | awk '{print $1}') FUZZable URLs."
 echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-KTA.txt" | awk '{print $1}') URLs."
+echo "Confirmed final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-HTTPX.csv" | awk '{print $1}') resolvable URLs."
 
 set +x
