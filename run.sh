@@ -94,4 +94,18 @@ echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y
 echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-KTA.txt" | awk '{print $1}') URLs."
 echo "Confirmed final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-HTTPX.csv" | awk '{print $1}') resolvable URLs."
 
+# Fuzzing:
+
+# DNS:
+docker run -v $(pwd)/WL/SL/Discovery/DNS/:/app/ --rm ffuf:latest -w /app/subdomains-top1million-5000.txt -u "https://FUZZ.$target/" | tee FFUF-DNS-RESULTS.txt
+
+# Directory:
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/common.txt -u "https://$target/FUZZ" | tee FFUF-DIR1-RESULTS.txt
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/combined_directories.txt -u "https://$target/FUZZ" | tee FFUF-DIR2-RESULTS.txt
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/directory-list-2.3-big.txt -u "https://$target/FUZZ" | tee FFUF-DIR2-RESULTS.txt
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/quickhits.txt -u "https://$target/FUZZ" | tee FFUF-DIR2-RESULTS.txt
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-small-directories.txt -u "https://$target/FUZZ" | tee FFUF-DIR2-RESULTS.txt
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-medium-directories.txt -u "https://$target/FUZZ" | tee FFUF-DIR2-RESULTS.txt
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-large-directories.txt -u "https://$target/FUZZ" | tee FFUF-DIR2-RESULTS.txt
+
 set +x
