@@ -111,4 +111,7 @@ docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app
 docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-medium-directories.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
 docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-large-directories.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
 
+# Fuzzing from all urls in Paraminer: 
+# docker run -v $(pwd)/WL/SL/Fuzzing/:/app/ --rm ffuf:latest -w /app/Unicode.txt -u <''> | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
+
 set +x
