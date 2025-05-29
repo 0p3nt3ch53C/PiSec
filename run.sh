@@ -88,19 +88,20 @@ docker run -v $(pwd)"/$results_directory":/app/ --rm httpx:latest -l /app/$(date
 # Fuzzing:
 
 # Sort fuzzing lists:
-# grep -v "*" results/cocacola.com/20250528-DOMAINS.all > results/cocacola.com/20250528-BASE-DOMAINS.all
+grep -v "*" $results_directory/$(date +%Y%m%d)-DOMAINS.all > $results_directory/$(date +%Y%m%d)-BASE-DOMAINS.all
+grep -i "*" $results_directory/$(date +%Y%m%d)-DOMAINS.all > $results_directory/$(date +%Y%m%d)-WILDCARD-DOMAINS.all
 
 # DNS:
-docker run -v $(pwd)/WL/SL/Discovery/DNS/:/app/ --rm ffuf:latest -w /app/subdomains-top1million-5000.txt -u "https://FUZZ.$target/" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/DNS/:/app/ --rm ffuf:latest -w /app/subdomains-top1million-5000.txt -u "https://FUZZ.$target/" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
 
 # Directory:
-docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/common.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
-docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/combined_directories.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
-docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/directory-list-2.3-big.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
-docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/quickhits.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
-docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-small-directories.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
-docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-medium-directories.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
-docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-large-directories.txt -u "https://$target/FUZZ" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/common.txt -u "https://$target/FUZZ" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/combined_directories.txt -u "https://$target/FUZZ" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/directory-list-2.3-big.txt -u "https://$target/FUZZ" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/quickhits.txt -u "https://$target/FUZZ" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-small-directories.txt -u "https://$target/FUZZ" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-medium-directories.txt -u "https://$target/FUZZ" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
+docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app/raft-large-directories.txt -u "https://$target/FUZZ" | tee -a "$results_directory$(date +%Y%m%d)-FFUF.txt"
 
 # Fuzzing from all urls in Paraminer: 
 # docker run -v $(pwd)/WL/SL/Fuzzing/:/app/ --rm ffuf:latest -w /app/Unicode.txt -u <''> | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
