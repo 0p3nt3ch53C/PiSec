@@ -68,6 +68,7 @@ docker run --rm cero:latest "$target" | tee "$results_directory$(date +%Y%m%d)-C
 # docker run --rm amass:latest intel -active -whois -d "$target" -v | tee "$results_directory$(date +%Y%m%d)-OSINT-AMA.txt"
 # Capture ENUM:
 # docker run --rm amass:latest enum -active -d "$target" -v | tee "$results_directory$(date +%Y%m%d)-ENUM-AMA.txt"
+# docker run --rm amass:latest enum -brute -active -d "$target" -v | tee "$results_directory$(date +%Y%m%d)-ENUM-AMA.txt"
 
 sort -u "$results_directory"$(date +%Y%m%d)-*.txt > "$results_directory$(date +%Y%m%d)-DOMAINS.all"
 sed -i -e 's/^/https:\/\//' "$results_directory$(date +%Y%m%d)-DOMAINS.all"
@@ -112,8 +113,11 @@ echo "Runing Katana..."
 docker run --rm katana:latest -jc -d 15 -u $(cat "$results_directory$(date +%Y%m%d)-OLDOMAINS.all") -system-chrome -headless | tee "$results_directory$(date +%Y%m%d)-KTA.txt"
 
 # Print final results:
-echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-PSP-FUZZ.txt" | awk '{print $1}') FUZZable URLs."
-echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-KTA.txt" | awk '{print $1}') URLs."
-echo "Confirmed final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-HTTPX.csv" | awk '{print $1}') resolvable URLs."
+fuzzurlnum=$(wc -l "$results_directory$(date +%Y%m%d)-PSP-FUZZ.txt" | awk '{print $1}')
+totalurlnum=$(wc -l "$results_directory$(date +%Y%m%d)-KTA.txt" | awk '{print $1}')
+httpxurlnum=$(wc -l "$results_directory$(date +%Y%m%d)-HTTPX.csv" | awk '{print $1}')
+echo "Final results from "$target" include "$fuzzurlnum" FUZZable URLs."
+echo "Final results from "$target" include "$totalurlnum" URLs."
+echo "Confirmed final results from "$target" include "$httpxurlnum" resolvable URLs."
 
 set +x

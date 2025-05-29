@@ -8,6 +8,7 @@
 
 For manual testing, please see: 
 1. https://book.hacktricks.wiki/en/index.html
+2. Google Dorking (e.g., site:mytarget.com inurl:login intitle:login)
 
 ### Tools:
 
