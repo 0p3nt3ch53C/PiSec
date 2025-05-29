@@ -85,19 +85,10 @@ echo "Attempting to spider domains found from $target..."
 echo "Running HTTPX..."
 docker run -v $(pwd)"/$results_directory":/app/ --rm httpx:latest -l /app/$(date +%Y%m%d)-DOMAINS.all -sc -cl -ct -title -server -td -cdn -location -csv | tee "$results_directory$(date +%Y%m%d)-HTTPX.csv"
 
-# Spider based on all domains
-echo "Runing Katana..."
-docker run --rm katana:latest -jc -d 15 -u $(cat "$results_directory$(date +%Y%m%d)-OLDOMAINS.all") -system-chrome -headless | tee "$results_directory$(date +%Y%m%d)-KTA.txt"
-
-# Print final results:
-echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-PSP-FUZZ.txt" | awk '{print $1}') FUZZable URLs."
-echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-KTA.txt" | awk '{print $1}') URLs."
-echo "Confirmed final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-HTTPX.csv" | awk '{print $1}') resolvable URLs."
-
 # Fuzzing:
 
 # Sort fuzzing lists:
-# grep -v "*" PiSec/results/cocacola.com/20250528-DOMAINS.all > PiSec/results/cocacola.com/20250528-BASE-DOMAINS.all
+# grep -v "*" results/cocacola.com/20250528-DOMAINS.all > results/cocacola.com/20250528-BASE-DOMAINS.all
 
 # DNS:
 docker run -v $(pwd)/WL/SL/Discovery/DNS/:/app/ --rm ffuf:latest -w /app/subdomains-top1million-5000.txt -u "https://FUZZ.$target/" | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
@@ -113,5 +104,15 @@ docker run -v $(pwd)/WL/SL/Discovery/Web-Content/:/app/ --rm ffuf:latest -w /app
 
 # Fuzzing from all urls in Paraminer: 
 # docker run -v $(pwd)/WL/SL/Fuzzing/:/app/ --rm ffuf:latest -w /app/Unicode.txt -u <''> | tee "$results_directory$(date +%Y%m%d)-FFUF.txt"
+
+
+# Spider based on all domains
+echo "Runing Katana..."
+docker run --rm katana:latest -jc -d 15 -u $(cat "$results_directory$(date +%Y%m%d)-OLDOMAINS.all") -system-chrome -headless | tee "$results_directory$(date +%Y%m%d)-KTA.txt"
+
+# Print final results:
+echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-PSP-FUZZ.txt" | awk '{print $1}') FUZZable URLs."
+echo "Final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-KTA.txt" | awk '{print $1}') URLs."
+echo "Confirmed final results from "$target" include $(wc -l "$results_directory$(date +%Y%m%d)-HTTPX.csv" | awk '{print $1}') resolvable URLs."
 
 set +x
