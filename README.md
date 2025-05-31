@@ -3,6 +3,7 @@
 # Improvements:
 
 1. Searching for credentials (e.g., trufflehog)
+2. Proxy support.
 
 ## Manual Testing:
 
