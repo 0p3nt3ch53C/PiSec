@@ -2,8 +2,9 @@
 
 # Improvements:
 
-1. Searching for credentials (e.g., trufflehog)
-2. Proxy support.
+1. Search Github for domain / organization 
+2. Searching for credentials (e.g., trufflehog)
+3. Proxy support
 
 ## Manual Testing:
 
