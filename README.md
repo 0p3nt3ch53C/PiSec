@@ -3,7 +3,7 @@
 # Improvements:
 
 1. Search Github for domain / organization 
-2. Searching for credentials (e.g., trufflehog)
+2. Searching for credentials (e.g., trufflehog) with Google API custom
 3. Proxy support
 
 ## Manual Testing:
