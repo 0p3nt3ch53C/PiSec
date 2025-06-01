@@ -54,6 +54,9 @@ echo "Continuing with: $target".
 
 # Google Dorking
 echo "Running Google Dorking..."
+site="github.com"
+intext=$(echo $target | cut -d '.' -f1)
+query=$(echo "site:$site intext:$intext" | sed "s/ /+/g")
 
 # Retrieve domains
 echo "Running subfinder..."
