@@ -54,6 +54,7 @@ echo "Continuing with: $target".
 
 # Google Dorking
 echo "Running Google Dorking..."
+# use github search first:
 site="github.com"
 intext=$(echo $target | cut -d '.' -f1)
 query=$(echo "site:$site intext:$intext" | sed "s/ /+/g")
