@@ -52,6 +52,9 @@ echo "Continuing with: $target".
 # Create logic for if file used for domains.
 # WIP - If a file, strip out and check if hackerone csv file, or raw domains, or something else.
 
+# Google Dorking
+echo "Running Google Dorking..."
+
 # Retrieve domains
 echo "Running subfinder..."
 docker run --rm subfinder:latest -d "$target" -all | tee "$results_directory$(date +%Y%m%d)-SBF.txt"

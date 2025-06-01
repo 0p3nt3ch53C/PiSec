@@ -50,13 +50,25 @@ e.g., Discovery with a /24 CIDR range with IP addresses 10.10.10.0/24.
 
 Example: rei.com
 
-> ./run.sh rei.com &
+> nohup ./run.sh rei.com &
 
 Or as multiple lines:
 
 > docker run --rm katana:latest -jc -d 25 -u https://rei.com/ -system-chrome -headless | tee results/20250428-rei-d25.txt &
+> 
 > docker run --rm crt:latest rei.com | tee results/20250429-crt-rei.txt &
+> 
 > docker run --rm cero:latest www.rei.com -v  | tee results/20250429-cer-rei.txt &
+> 
 > docker run --rm subfinder:latest -d rei.com -all  | tee results/20250429-sbf-rei.txt &
+> 
 > docker run --rm amass:latest enum -active -d rei.com -v | tee results/20250429-ama-rei.txt &
+> 
 > docker run --rm nuclei:latest -u https://www.rei.com | tee results/20250429-nuc-rei.txt &
+
+
+
+
+# References / Inspiration
+* [Google Dorker](https://github.com/RevoltSecurities/GoogleDorker)
+* [Advance Search](https://github.com/raygray031/Advance-Search)
